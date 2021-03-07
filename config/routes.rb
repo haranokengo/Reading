@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  
-  namespace :admin do  # ファイル構成とurlも指定のパスにして管理者側がわかるようにnamespaceを使用
+  # ファイル構成とurlも指定のパスにして管理者側がわかるようにnamespaceを使用
+  namespace :admin do
     
     devise_for :admins, controllers: {
     sessions: 'admin/admins/sessions',
@@ -13,7 +13,8 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show]
   end
   
-  scope module: :public do  # ファイル構成のみ指定のパスにするため、moduleを使用
+  # ファイル構成のみ指定のパスにするため、moduleを使用
+  scope module: :public do
     
     root to: 'homes#top'
     
@@ -25,7 +26,11 @@ Rails.application.routes.draw do
     registrations: 'public/users/registrations'
     }
     
-    resources :books, only: [:new, :create, :edit, :update, :destroy]
+    get 'books/search', to: "books#search"
+    resources :books, only: [:new, :create, :edit, :update, :destroy, :show] do
+      resources :post_comments, only: [:create, :destroy]
+    end
+    resources :users, only: [:show, :edit, :update]
   end
   
 end

@@ -1,32 +1,43 @@
 class Public::BooksController < ApplicationController
-  
-  def new
-    @book = Book.new
-  end
-  
-  def create
-    @book = Book.new(book_params)
-    @book.user_id = current_user.id
-    @book.save
-    # とりあえず前に戻る
-    redirect_back(fallback_location: root_path)
-  end
-  
-  def edit
+
+  def show
     @book = Book.find(params[:id])
   end
-  
-  def update
-    book = Book.find(params[:id])
-    book.update(book_params)
-    # とりあえず前に戻る
-    redirect_back(fallback_location: root_path)
-  end
-  
-  private
-  
-  def book_params
-    params.require(:book).permit(:image, :title, :author, :description)
+
+  def search
+    # 空の配列を作成
+    @books = []
+    # paramsでtitleを持ってくる
+    @title = params[:title]
+    if @title.present?
+      results = RakutenWebService::Books::Book.search({
+        title: @title,
+      })
+      results.each do |result|
+        book = Book.new(read(result))
+        @books << book
+      end
+    end
+    @books.each do |book|
+      unless Book.all.include?(book)
+        book.save
+      end
+    end
   end
 
+  private
+  def read(result)
+    title = result["title"]
+    author = result["author"]
+    url = result["itemUrl"]
+    isbn = result["isbn"]
+    image_url = result["mediumImageUrl"]
+    {
+      title: title,
+      author: author,
+      url: url,
+      isbn: isbn,
+      image_url: image_url,
+    }
+  end
 end

@@ -1,7 +1,4 @@
 class Book < ApplicationRecord
-  
-  belongs_to :user
-  # 画像アップ用
-  attachment :image
-  
+  self.primary_key = "isbn"
+  has_many :reviews, dependent: :destroy
 end

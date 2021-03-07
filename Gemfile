@@ -63,6 +63,11 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 
-gem "refile", require: "refile/rails", github: 'manfe/refile'
+gem 'refile', require: 'refile/rails', github: 'manfe/refile'
 
-gem "refile-mini_magick"
+gem 'refile-mini_magick'
+
+# 楽天APIを使用
+gem 'rakuten_web_service' 
+# 環境変数のジェム
+gem 'dotenv-rails'
