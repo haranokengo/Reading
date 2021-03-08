@@ -1,2 +1,53 @@
 <%= @book.title %>
 <%= @book.author %>
+
+<div>
+  <p>レビュー件数:<%= @book.reviews.count %></p>
+  <% @book.reviews.each do |reviews| %>
+    <%= reviews.user.name %><br>
+    <%= reviews.created_at.strftime('%Y/%m/%d') %><br>
+    <%= reviews.content %><br>
+    <% if reviews.user == current_user %>
+      <div>
+        <%= link_to "削除", book_review_path(reviews.book, reviews), method: :delete %>
+      </div>
+    <% end %>
+    <% if @review.favorited_by?(current_user) %>
+      <p>
+        <%= link_to book_review_favorites_path(@book, @review), method: :delete do %>
+          ♥<%= @review.favorites.count %> いいね
+        <% end %>
+      </p>
+    <% else %>
+      <p>
+        <%= link_to book_review_favorites_path(@book, @review), method: :post do %>
+          ♡<%= @review.favorites.count %> いいね
+        <% end %>
+      </p>
+    <% end %>
+    <div>
+      <% reviews.posts.each do |posts| %>
+        <%= posts.user.name %>
+        <%= posts.created_at.strftime('%Y/%m/%d') %>
+        <%= posts.impression %>
+        <% if posts.user == current_user %>
+          <div>
+            <%= link_to "削除", book_review_post_path(posts.review.book, posts.review, posts), method: :delete %>
+          </div>
+    <% end %>
+      <% end %>
+    </div>
+    <div>
+      <%= form_with(model:[@book, @review, @post], local: true) do |f| %>
+        <%= f.text_area :impression, rows:'5',placeholder: "コメントをここに" %>
+        <%= f.submit "送信する" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+<div>
+  <%= form_with(model:[@book, @review_new], local: true) do |f| %>
+    <%= f.text_area :content, rows:'5', placeholder: "レビューをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>

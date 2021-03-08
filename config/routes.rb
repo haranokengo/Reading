@@ -28,7 +28,12 @@ Rails.application.routes.draw do
     
     get 'books/search', to: "books#search"
     resources :books, only: [:new, :create, :edit, :update, :destroy, :show] do
-      resources :post_comments, only: [:create, :destroy]
+      # bookに結びつけてネスト化
+      resources :reviews, only: [:create, :destroy] do
+        # reviewに結びつけている
+        resources :posts, only: [:create, :destroy]
+        resource :favorites, only: [:create, :destroy]
+      end
     end
     resources :users, only: [:show, :edit, :update]
   end

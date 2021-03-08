@@ -1,6 +1,6 @@
 RakutenWebService.configure do |c|
     # アプリケーションID
-    c.application_id = ENV['KEY']
+    c.application_id = ENV['API_KEY']
     # アフィリエイト
-    c.affiliate_id = ENV['affiliate_key']
+    c.affiliate_id = ENV['AFFILIATE_KEY']
 end

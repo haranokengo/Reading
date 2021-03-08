@@ -2,6 +2,10 @@ class Public::BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @review_new = Review.new
+    # primary_keyをisbnに設定しているためfind_byでbookのisbnが保存されているreviewを持ってきている
+    @review = Review.find_by(params[:isbn_id])
+    @post = Post.new
   end
 
   def search
