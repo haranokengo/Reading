@@ -2,10 +2,23 @@
   <%= text_field_tag :title, @title %>
   <%= button_tag type: 'submit' %>
 <% end %>
-<% if @books %>
-  <% @books.each do |book| %>
-    <%= image_tag book.image_url %>
-    <%= link_to book.title, book_path(book.id) %>
-    <%= book.author %>
-  <% end %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <% if @books %>
+      <% @books.each do |book| %>
+      <table class="table">
+          <tr>
+            <th>画像</th>
+            <th>タイトル</th>
+            <th>作者</th>
+          </tr>
+          <tr>
+            <td><%= image_tag book.image_url %></td>
+            <td><%= link_to book.title, book_path(book.id) %></td>
+            <td><%= book.author %></td>
+          </tr>
+        </table>
+      <% end %>
+    <% end %>
+  </div>
+</div>

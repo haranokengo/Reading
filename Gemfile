@@ -71,3 +71,7 @@ gem 'refile-mini_magick'
 gem 'rakuten_web_service' 
 # 環境変数のジェム
 gem 'dotenv-rails'
+gem 'pry-rails'
+
+gem 'bootstrap', '~> 4.5'
+gem 'jquery-rails'

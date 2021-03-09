@@ -1,5 +1,5 @@
 class Public::PostsController < ApplicationController
-  
+
   def create
     review = Review.find(params[:review_id])
     impression = current_user.posts.new(post_params)
@@ -7,12 +7,12 @@ class Public::PostsController < ApplicationController
     impression.save
     redirect_back(fallback_location: root_path)
   end
-  
+
   def destroy
     Post.find_by(id: params[:id], review_id: params[:review_id]).destroy
     redirect_back(fallback_location: root_path)
   end
-  
+
   def post_params
     params.require(:post).permit(:impression)
   end
