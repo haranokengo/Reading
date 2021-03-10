@@ -1,0 +1,6 @@
+<div>
+    <%= form_with(model:[@book, @review], local: true) do |f| %>
+      <%= f.text_area :content, placeholder: "レビューをここに" %>
+      <%= f.submit "送信する" %>
+    <% end %>
+  </div>

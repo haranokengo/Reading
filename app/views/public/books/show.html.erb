@@ -4,12 +4,21 @@
       <table>
         <tr>
           <td>タイトル</td>
-          <%= image_tag(@image_url) %>
+          <%= image_tag(@book.image_url) %>
           <td><%= @book.title %></td>
         </tr>
         <tr>
           <td>作者</td>
           <td><%= @book.author %></td>
+        </tr>
+        <tr>
+          <td><%= link_to "投稿する", new_book_review_path(@book.id) %></td>
+        </tr>
+        <tr>
+          <td><%= render "public/likes/like", book: @book %></td>
+        </tr>
+        <tr>
+          <td><%= link_to "お気に入り一覧", book_likes_path(@book.id) %></td>
         </tr>
       </table>
     <div>
@@ -61,11 +70,5 @@
       <% end %>
     </div>
   <% end %>
-  <div>
-    <%= form_with(model:[@book, @review_new], local: true) do |f| %>
-      <%= f.text_area :content, placeholder: "レビューをここに" %>
-      <%= f.submit "送信する" %>
-    <% end %>
-  </div>
 </div>
 

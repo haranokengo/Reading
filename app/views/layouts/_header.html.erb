@@ -1,0 +1,21 @@
+<header>
+  <% if user_signed_in? %>
+    <span><%= current_user.name %>さん こんにちは</span>
+  <% end %>
+  <ul>
+  <% if admin_admin_signed_in? %>
+    <li>管理者</li>
+    <li><%= link_to 'ユーザー一覧', admin_users_path %></li>
+    <li><%= link_to 'カテゴリー一覧', admin_categorys_path %></li>
+    <li><%= link_to 'ログアウト', destroy_admin_admin_session_path, method: :delete %></li>
+  <% elsif user_signed_in? %>
+    <li>ユーザー</li>
+    <li><%= link_to 'マイページ', user_path(current_user.id) %></li>
+    <li><%= link_to '本を探す', books_search_path %></li>
+    <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+  <% else %>
+    <li><%= link_to '新規登録', new_user_registration_path %></li>
+    <li><%= link_to 'ログイン', new_user_session_path %></li>
+  <% end %>
+  </ul>
+</header>

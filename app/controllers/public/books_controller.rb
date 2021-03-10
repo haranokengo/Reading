@@ -2,9 +2,6 @@ class Public::BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-    @image_url = @book.image_url
-    #@image_url = RakutenWebService::Books::Book.search({image_url: @image})
-    @review_new = Review.new
     @post = Post.new
   end
 

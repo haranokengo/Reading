@@ -3,12 +3,11 @@ Rails.application.routes.draw do
   namespace :admin do
     
     devise_for :admins, controllers: {
-    sessions: 'admin/admins/sessions',
-    passwords: 'admin/admins/passwords',
-    registrations: 'admin/admins/registrations'
+      # 管理者はログイン画面のみ
+      sessions: 'admin/admins/sessions',
     }
     
-    resources :gunres, only: [:new, :create, :edit, :update, :index]
+    resources :categorys, only: [:create, :edit, :update, :index, :destroy]
     
     resources :users, only: [:index, :show]
   end
@@ -27,9 +26,10 @@ Rails.application.routes.draw do
     }
     
     get 'books/search', to: "books#search"
-    resources :books, only: [:new, :create, :edit, :update, :destroy, :show] do
+    resources :books, only: [:create, :edit, :update, :destroy, :show] do
+      resources :likes, only: [:create, :destroy, :index]
       # bookに結びつけてネスト化
-      resources :reviews, only: [:create, :destroy] do
+      resources :reviews, only: [:create, :destroy, :new] do
         # reviewに結びつけている
         resources :posts, only: [:create, :destroy]
         resource :favorites, only: [:create, :destroy]
