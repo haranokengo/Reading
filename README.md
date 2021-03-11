@@ -1,24 +1,25 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Reading
+## サイト概要
+本の紹介サイト
+読んだ本の名前、レビューを投稿する。
+閲覧者は、検索機能を元に自分の読みたいジャンルの本を検索できる。本には何人かのレビューがありそのレビューが気に入れば、読みたい本としてお気に入りに入れることができる。また、投稿者にもフォローすることができる。
+本のレビューに対しても自分のコメントを投稿できるようにしている。
+### サイトテーマ
+読書を始めたいが、どんな本を読んだらいいのかわからない方に対して、その人にとって求めている本を紹介してくれるサイト
+### テーマを選んだ理由
+自分自身が、読書がしたいという気持ちはあるが漠然としていて、どんな本を読んだらいいのかわからないことがあったので、キーワードなどの検索をしたらヒットするようなサイトがあれば便利だと思ったから。
+### ターゲットユーザ
+* これから読書を始める方
+* 元々読書が趣味の方
+* 漫画を読む方
+### 主な利用シーン
+読書をこれから始めたい方などが、自分のイメージで本を検索でき探すことができるようにする。
+## 設計書
+### 機能一覧
+https://docs.google.com/spreadsheets/d/1oDEktX-4fpxVspm4utiX5QlQphku5u7N7la79gd3Y6c/edit#gid=0
+## 開発環境
+* OS：Linux (CentOS)
+* 言語：HTML, CSS, JavaScript, Ruby, SQL
+* フレームワーク：Ruby on Rails
+* JSライブラリ：jQuery
+* IDE：Cloud9
