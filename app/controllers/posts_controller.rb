@@ -1,4 +1,4 @@
-class Public::PostsController < ApplicationController
+class PostsController < ApplicationController
 
   def create
     review = Review.find(params[:review_id])
@@ -9,7 +9,7 @@ class Public::PostsController < ApplicationController
   end
 
   def destroy
-    Post.find_by(id: params[:id], review_id: params[:review_id]).destroy
+    Post.find_by(id: params[:id]).destroy
     redirect_back(fallback_location: root_path)
   end
 

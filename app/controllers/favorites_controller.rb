@@ -1,4 +1,4 @@
-class Public::FavoritesController < ApplicationController
+class FavoritesController < ApplicationController
   
   def create
     review = Review.find(params[:review_id])

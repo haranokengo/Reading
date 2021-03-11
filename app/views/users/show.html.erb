@@ -1,0 +1,28 @@
+<h1>マイページ</h1>
+  <h4>ニックネーム</h4>
+  <!--imageが設定されていなければデフォルト画像-->
+  <%= attachment_image_tag @user, :image_id, :fill, 60, 60, fallback: "no_image.jpg" %>
+  <%= @user.nickname %>
+  <!--ログインユーザーだった場合プロフィールを編集できる-->
+  <% if @user.id == current_user.id %>
+    <p><%= link_to "プロフィール編集", edit_user_path(@user.id) %></p>
+  <% end %>
+    <p>フォロー数<%= link_to "#{@user.follower.count}", follower_user_path(@user.id) %></P>
+    <p>フォロワー数<%= link_to "#{@user.followed.count}", follower_user_path(@user.id) %></p>
+
+  <!--ログインユーザーでない場合に表示する-->
+  <% unless @user == current_user %>
+    <!--フォローユーザーにログインしているユーザーのIdがあればフォローを外すリンクを表示-->
+    <% if current_user.following?(@user) %>
+      <%= link_to 'フォロー外す', unfollow_path(@user.id), method: :POST %>
+    <% else %>
+      <%= link_to 'フォローする', follow_path(@user.id), method: :POST %>
+    <% end %>
+  <% end %>
+
+  <%= link_to "お気に入り一覧", user_likes_path(@user.id) %>
+
+<% @user.reviews.each do |review| %>
+  <h4>タイトル</h4>
+  <%= review.content %>
+<% end %>

@@ -1,0 +1,29 @@
+<h2>フォロー一覧</h2>
+<table class="table col-lg-12">
+  <thead></thead>
+  <% if @users.empty? %>
+    <span>ユーザーはいません</span>
+  <% else %>
+    <tr>
+      <th>image</th>
+      <th>name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  <% end %>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= attachment_image_tag(user, :image, :fill, 50, 50, ) %></td>
+        <td><%= user.name %></td>
+        <td>フォロー数：<%= user.follower.count %></td>
+        <td>フォロワー数：<%= user.followed.count %></td>
+        <td>
+          <%= link_to 'show', user_path(user) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

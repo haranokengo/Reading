@@ -1,4 +1,4 @@
-class Public::ReviewsController < ApplicationController
+class ReviewsController < ApplicationController
 
   def new
     @book = Book.find(params[:book_id])
@@ -14,7 +14,7 @@ class Public::ReviewsController < ApplicationController
   end
 
   def destroy
-    Review.find_by(id: params[:id], book_id: params[:book_id]).destroy
+    Review.find_by(id: params[:id]).destroy
     redirect_back(fallback_location: root_path)
   end
 

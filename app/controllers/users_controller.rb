@@ -1,4 +1,4 @@
-class Public::UsersController < ApplicationController
+class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
@@ -12,6 +12,16 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(user_params)
     redirect_to user_path(@user.id)
+  end
+  
+  def follower
+    @user = User.find(params[:id])
+    @users = @user.following_user
+  end
+
+  def followed
+    @user = User.find(params[:id])
+    @users = @user.follower_user
   end
   
   private

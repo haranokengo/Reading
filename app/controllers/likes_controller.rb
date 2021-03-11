@@ -1,7 +1,7 @@
-class Public::LikesController < ApplicationController
+class LikesController < ApplicationController
 
   def index
-    @book = Book.find(params[:book_id])
+    @user = User.find(params[:user_id])
   end
 
   def create

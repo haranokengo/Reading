@@ -1,5 +1,5 @@
 <table>
-<% @book.likes.each do |like| %>
+<% @user.likes.each do |like| %>
   <tr>
     <td><%= image_tag(like.book.image_url) %></td>
     <td><%= like.book.title %></td>
