@@ -28,6 +28,7 @@
     <%= review.user.name %><br>
     <%= review.created_at.strftime('%Y/%m/%d') %><br>
     <%= review.content %><br>
+    <%= review.category.name %><br>
     <% if review.user == current_user %>
       <div>
         <%= link_to "削除", review_path(review), method: :delete %>
@@ -47,18 +48,19 @@
         </p>
     <% end %>
 
-
-    <p>===== review for comment =====</p>
-    <%  review.posts.each do |p| %>
-      <%= p.user.name %>
-      <%= p.created_at.strftime('%Y/%m/%d') %>
-      <%= p.impression %>
-      <% if p.user == current_user %>
-        <div>
-          <%= link_to "削除", post_path(p), method: :delete %>
-        </div>
+    <div>
+      <p>===== review for comment =====</p>
+      <%  review.posts.each do |p| %>
+        <%= p.user.name %>
+        <%= p.created_at.strftime('%Y/%m/%d') %>
+        <%= p.impression %>
+        <% if p.user == current_user %>
+          <div>
+            <%= link_to "削除", post_path(p), method: :delete %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
 
     <div>
       <%= form_with(model:[review, @post], local: true) do |f| %>

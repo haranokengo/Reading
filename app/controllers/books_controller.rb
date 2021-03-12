@@ -27,6 +27,7 @@ class BooksController < ApplicationController
   end
 
   private
+  
   def read(result)
     title = result["title"]
     author = result["author"]

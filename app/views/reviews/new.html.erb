@@ -1,6 +1,10 @@
 <div>
-    <%= form_with(model:[@book, @review], local: true) do |f| %>
-      <%= f.text_area :content, placeholder: "レビューをここに" %>
-      <%= f.submit "送信する" %>
-    <% end %>
-  </div>
+  <%= form_with(model:[@book, @review], local: true) do |f| %>
+    <h4>投稿内容</h4>
+    <%= f.text_area :content, placeholder: "レビューをここに" %>
+      <h4>おすすめ年代選択</h4>
+      <p>あなたがこの本をおすすめしたい年代を選んでさください</p>
+      <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: '選択して下さい' }, class: 'form-control' %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>

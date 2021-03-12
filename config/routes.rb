@@ -1,26 +1,28 @@
 Rails.application.routes.draw do
+  get 'search/search'
   # ファイル構成とurlも指定のパスにして管理者側がわかるようにnamespaceを使用
   namespace :admin do
     devise_for :admins, controllers: {
       # 管理者はログイン画面のみ
       sessions: 'admin/admins/sessions',
     }
-    resources :categorys, only: [:create, :edit, :update, :index, :destroy]
+    resources :categories, only: [:create, :edit, :update, :index, :destroy]
     resources :users, only: [:index, :show]
   end
 
     root to: 'homes#top'
-    
+
     get 'about' => 'homes#about'
-    
+
     devise_for :users, controllers: {
-    sessions: 'public/users/sessions',
-    passwords: 'public/users/passwords',
-    registrations: 'public/users/registrations'
+    sessions: 'users/sessions',
+    passwords: 'users/passwords',
+    registrations: 'users/registrations'
     }
 
-    get 'books/search', to: "books#search"
-    
+    get '/search' => 'search#search'
+    get 'books/search' => 'books#search'
+
     resources :books, only: [:create, :edit, :update, :destroy, :show] do
       # bookに結びつけてネスト化
       # ネスト化が２階層で深くなっているためshallowオプションを使用して浅くしている
@@ -31,7 +33,7 @@ Rails.application.routes.draw do
       end
       resources :likes, only: [:create, :destroy]
     end
-    
+
     resources :users, only: [:show, :edit, :update] do
       resources :likes, only: [:index]
       # フォローする
@@ -42,6 +44,6 @@ Rails.application.routes.draw do
       get :follower, on: :member
       get :followed, on: :member
     end
-    
+
   end
 

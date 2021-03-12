@@ -1,5 +1,5 @@
 class Category < ApplicationRecord
   
-  belongs_to :book
+  has_many :reviews, dependent: :destroy
   
 end

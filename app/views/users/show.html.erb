@@ -21,6 +21,24 @@
   <% end %>
 
   <%= link_to "お気に入り一覧", user_likes_path(@user.id) %>
+  
+  
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>カテゴリー検索</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td>
+          <%= link_to category.name, search_path('search[value]': category.id, 'search[how]': "match") %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+</table>
 
 <% @user.reviews.each do |review| %>
   <h4>タイトル</h4>
