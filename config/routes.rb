@@ -20,8 +20,9 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
     }
 
-    get '/search' => 'search#search'
+    get '/search' => 'searchs#search'
     get 'books/search' => 'books#search'
+    get '/ranks' => 'ranks#index'
 
     resources :books, only: [:create, :edit, :update, :destroy, :show] do
       # bookに結びつけてネスト化
