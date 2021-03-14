@@ -9,7 +9,7 @@
     <li><%= link_to 'カテゴリー一覧', admin_categories_path %></li>
     <li><%= link_to 'ログアウト', destroy_admin_admin_session_path, method: :delete %></li>
   <% elsif user_signed_in? %>
-    <li>ユーザー</li>
+    <li><%= link_to 'ランキング', ranks_path %></li></li>
     <li><%= link_to 'マイページ', user_path(current_user.id) %></li>
     <li><%= link_to '本を探す', books_search_path %></li>
     <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>

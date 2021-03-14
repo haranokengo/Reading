@@ -33,7 +33,6 @@
     <% @categories.each do |category| %>
       <tr>
         <td>
-          
           <%= link_to category.name, search_path('search[value]': category.id, 'search[how]': "match") %>
         </td>
       </tr>

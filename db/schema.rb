@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_12_093347) do
+ActiveRecord::Schema.define(version: 2021_03_12_090007) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2021_03_12_093347) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -43,6 +43,13 @@ ActiveRecord::Schema.define(version: 2021_03_12_093347) do
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
     t.integer "review_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "labels", force: :cascade do |t|
+    t.integer "review_id"
+    t.string "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -58,9 +65,9 @@ ActiveRecord::Schema.define(version: 2021_03_12_093347) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.text "impression"
-    t.integer "user_id"
-    t.integer "review_id"
+    t.text "impression", null: false
+    t.integer "user_id", null: false
+    t.integer "review_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -73,7 +80,7 @@ ActiveRecord::Schema.define(version: 2021_03_12_093347) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.string "content"
+    t.string "content", null: false
     t.integer "user_id", null: false
     t.integer "book_id", null: false
     t.datetime "created_at", null: false

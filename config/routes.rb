@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'search/search'
   # ファイル構成とurlも指定のパスにして管理者側がわかるようにnamespaceを使用
   namespace :admin do
     devise_for :admins, controllers: {

@@ -1,9 +1,9 @@
 class CreatePosts < ActiveRecord::Migration[5.2]
   def change
     create_table :posts do |t|
-      t.text :impression
-      t.integer :user_id
-      t.integer :review_id
+      t.text :impression, null: false
+      t.integer :user_id, null: false
+      t.integer :review_id, null: false
 
       t.timestamps
     end
