@@ -7,6 +7,6 @@ class CreateLikes < ActiveRecord::Migration[5.2]
       t.timestamps
       t.index [:user_id, :book_id], unique: true
     end
-    add_foreign_key :bookcases, :books, column: :book_id, primary_key: :isbn
+    #add_foreign_key :bookcases, :books, column: :book_id, primary_key: :isbn
   end
 end
