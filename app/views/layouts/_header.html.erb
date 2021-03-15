@@ -1,21 +1,62 @@
-<header>
-  <% if user_signed_in? %>
-    <span><%= current_user.name %>さん こんにちは</span>
-  <% end %>
-  <ul>
-  <% if admin_admin_signed_in? %>
-    <li>管理者</li>
-    <li><%= link_to 'ユーザー一覧', admin_users_path %></li>
-    <li><%= link_to 'カテゴリー一覧', admin_categories_path %></li>
-    <li><%= link_to 'ログアウト', destroy_admin_admin_session_path, method: :delete %></li>
-  <% elsif user_signed_in? %>
-    <li><%= link_to 'ランキング', ranks_path %></li></li>
-    <li><%= link_to 'マイページ', user_path(current_user.id) %></li>
-    <li><%= link_to '本を探す', books_search_path %></li>
-    <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-  <% else %>
-    <li><%= link_to '新規登録', new_user_registration_path %></li>
-    <li><%= link_to 'ログイン', new_user_session_path %></li>
-  <% end %>
-  </ul>
+<header class="shadow-sm">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+      <div>
+        <%= link_to(root_path) do %>
+          <button class="btn btn-outline-secondary btn-fishy">Reading</button>
+        <% end %>
+      </div>
+      <div>
+        <% if user_signed_in? %>
+          <span><%= current_user.name %>さん こんにちは</span>
+        <% elsif admin_admin_signed_in? %>
+          <span>管理者ページです</span>
+        <% end %>
+        <ul class="navbar-nav ml-auto">
+          <% if admin_admin_signed_in? %>
+            <li class="nav-item"><%= link_to 'ユーザー一覧', admin_users_path, class: 'nav-link text-dark' %></li>
+            <li class="nav-item"><%= link_to 'カテゴリー一覧', admin_categories_path, class: 'nav-link text-dark' %></li>
+            <li class="nav-item"><%= link_to 'ログアウト', destroy_admin_admin_session_path, method: :delete, class: 'nav-link text-dark' %></li>
+          <% elsif user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to(ranks_path) do %>
+                <button class="btn btn-outline-secondary btn-fishy">ランキング</button>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to(user_path(current_user.id)) do %>
+                <button class="btn btn-outline-secondary btn-fishy">マイページ</button>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to(books_search_path) do %>
+                <button class="btn btn-outline-secondary btn-fishy">本を探す</button>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to(destroy_user_session_path) do %>
+                <button class="btn btn-outline-secondary btn-fishy">ログアウト</button>
+              <% end %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to(new_user_registration_path) do %>
+                <button class="btn btn-outline-secondary btn-fishy">新規登録</button>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to(new_user_session_path) do %>
+                <button class="btn btn-outline-secondary btn-fishy">ログイン</button>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to(new_admin_admin_session_path) do %>
+                <button class="btn btn-outline-secondary btn-fishy">管理者</button>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </header>

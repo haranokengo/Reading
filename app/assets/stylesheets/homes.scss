@@ -1,3 +1,47 @@
 // Place all the styles related to the homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.heading {
+  margin-top: 50px;
+}
+
+.heading-top {
+  margin: 50px;
+}
+
+.top-image {
+  height: 600px;
+  width: 100%;
+  background-image: image-url('home.image.jpg');
+  background-position: bottom;
+  // 上下中央寄せしている
+  display: flex;
+	align-items: center;
+}
+
+.cover-text {
+  width: 100%;
+  height: 400px;
+  background-color: rgba(255,255,255,0.6);
+  // 上下中央寄せしている
+  display: flex;
+	align-items: center;
+}
+
+.top-text {
+  width: 100%;
+  // 左右の中央寄せ
+  margin: 0 auto;
+  text-align: center;
+  color: black;
+}
+
+.btn-circle-border-double:hover {
+  -webkit-transform: rotateY(360deg);
+  transform: rotateY(360deg);
+}
+
+.btn-fishy:hover {
+  -webkit-transform: rotate(10deg);
+  transform: rotate(10deg);
+}
