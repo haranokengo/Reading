@@ -1,0 +1,15 @@
+<table class="table table-striped">
+  <tr>
+    <th>名前</th>
+    <th>ニックネーム</th>
+    <th>メールアドレス</th>
+  </tr>
+  <% users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.nickname %></td>
+      <td><%= user.email %></td>
+    </tr>
+  <% end %>
+</table>
+

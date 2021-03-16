@@ -1,24 +1,30 @@
-<%= form_tag(books_search_path, method: :get) do %>
-  <%= text_field_tag :title, @title %>
-  <%= button_tag type: 'submit' %>
-<% end %>
-<div class="container">
+<div class="container mt-5">
   <div class="row">
-    <% if @books %>
-      <% @books.each do |book| %>
-      <table class="table">
-          <tr>
-            <th>画像</th>
-            <th>タイトル</th>
-            <th>作者</th>
-          </tr>
-          <tr>
-            <td><%= image_tag book.image_url %></td>
-            <td><%= link_to book.title, book_path(book.id) %></td>
-            <td><%= book.author %></td>
-          </tr>
-        </table>
+    <div class="col-lg-4">
+      <%= form_tag(books_search_path, method: :get) do %>
+        <%= text_field_tag :title, @title %>
+        <%= button_tag '検索', class: "btn btn-outline-secondary text-success" %>
+      <% end %>
+    </div>
+    <div class="col-lg-8">
+      <% if @books %>
+        <% @books.each do |book| %>
+          <table class="table table-boder pull-left">
+            <tr>
+              <th>画像</th>
+              <th>タイトル</th>
+              <th>作者</th>
+            </tr>
+            <tr>
+              <td><%= image_tag book.image_url %></td>
+              <td><%= link_to book.title, book_path(book.id), class: 'text-success' %></td>
+              <td><%= book.author %></td>
+            </tr>
+          </table>
       <% end %>
     <% end %>
+    </div>
+
+    
   </div>
 </div>

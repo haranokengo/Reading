@@ -1,0 +1,14 @@
+<button type="button" class="btn btn-outline-secondary m-3 text-success" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    カテゴリー検索
+</button>
+<div class="collapse" id="collapseExample">
+    <div class="border p-3">
+      <table class="table table-border">
+        <tr>
+          <% categories.each do |category| %>
+            <td><%= link_to category.name, search_path('search[value]': category.id, 'search[how]': "match") %></td>
+          <% end %>
+        </tr>
+      </table>
+    </div>
+</div>

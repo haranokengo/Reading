@@ -14,9 +14,9 @@ Rails.application.routes.draw do
     get 'about' => 'homes#about'
 
     devise_for :users, controllers: {
-    sessions: 'users/sessions',
-    passwords: 'users/passwords',
-    registrations: 'users/registrations'
+      sessions: 'users/sessions',
+      passwords: 'users/passwords',
+      registrations: 'users/registrations'
     }
 
     get '/search' => 'searchs#search'

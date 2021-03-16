@@ -1,0 +1,9 @@
+<% if !Like.exists?(user_id: current_user.id, book_id: book.id) %>
+  <%= link_to book_likes_path(book.id), method: :post, remote: true, class:"like-btn" do %>
+    <button class="btn btn-outline-secondary">お気に入り<%= book.likes.count %></button>
+  <% end %>
+<% else %>
+  <%= link_to book_like_path(book_id: book.id, id: book.likes[0].id), method: :delete, remote: true, class:"like-btn" do %>
+    <button class="btn btn-outline-secondary text-success">お気に入り済み<%= book.likes.count %></button>
+  <% end %>
+<% end %>

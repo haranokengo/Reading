@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container mt-5">
   <div class="row">
     <div class="col-lg-4">
-      <table>
+      <table class="table table-boder">
         <tr>
           <td>タイトル</td>
           <%= image_tag(@book.image_url) %>
@@ -11,63 +11,74 @@
           <td>作者</td>
           <td><%= @book.author %></td>
         </tr>
-        <tr>
-          <td><%= link_to "投稿する", new_book_review_path(@book.id) %></td>
-        </tr>
-        <tr>
-          <td><%= render "likes/like", book: @book %></td>
-        </tr>
       </table>
-    <div>
+      <%= link_to(new_book_review_path(@book.id)) do %>
+        <button class="btn btn-outline-secondary text-success text-success">投稿</button>
+      <% end %>
+      <%= render "books/like", book: @book %>
+    </div>
+    <div class="col-lg-8">
+      <div class="review-list">
+        <div class="row">
+          <% @book.reviews.each do |review| %>
+            <div class="col-lg-3 text-center">
+              <%= attachment_image_tag review.user, :image, :size, 60,60, fallback: "no_image.jpg" %>
+              <div>
+                <% if review.favorited_by?(current_user) %>
+                  <%= link_to review_favorites_path(review), method: :delete do %>
+                    <button class="btn btn-outline-secondary bg-success text-light">
+                      <i class="fas fa-heart"></i>
+                      <%= review.favorites.count %> いいね
+                    </button>
+                  <% end %>
+                <% else %>
+                  <%= link_to review_favorites_path(review), method: :post do %>
+                    <button class="btn btn-outline-secondary">
+                      <i class="fas fa-heart-broken"></i>
+                      <%= review.favorites.count %> いいね
+                    </button>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+            <div class="col-lg-9">
+              <div>
+                <%= link_to review.user.name, user_path(review.user_id), class: 'text-success' %>
+              </div>
+              <div class="bg-light　w-100">
+                <%= review.content %>
+              </div>
+              <%= review.created_at.strftime('%Y/%m/%d') %>
+              カテゴリー：<%= review.category.name %>
+              <% if review.user == current_user %>
+                <div>
+                  <%= link_to(review_path(review), method: :delete) do %>
+                    <button class="btn btn-outline-secondary text-success">削除</button>
+                  <% end %>
+                </div>
+              <% end %>
+              <div>
+                <%  review.posts.each do |comment| %>
+                  <%= comment.user.name %>
+                  <%= comment.created_at.strftime('%Y/%m/%d') %>
+                  <%= comment.impression %>
+                  <% if comment.user == current_user %>
+                    <div>
+                      <%= link_to "削除", post_path(comment), method: :delete %>
+                    </div>
+                  <% end %>
+                <% end %>
+                <div>
+                  <%= form_with(model:[review, @post], local: true) do |f| %>
+                    <%= f.text_area :impression,placeholder: "コメントをここに", class: 'form-control' %>
+                    <%= f.submit "送信する" %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-<div class="col-lg-8">
-  <p>レビュー件数:<%= @book.reviews.count %></p>
-  <% @book.reviews.each do |review| %>
-    <p>===== book review =====</p>
-    <%= review.user.name %><br>
-    <%= review.created_at.strftime('%Y/%m/%d') %><br>
-    <%= review.content %><br>
-    <%= review.category.name %><br>
-    <% if review.user == current_user %>
-      <div>
-        <%= link_to "削除", review_path(review), method: :delete %>
-      </div>
-    <% end %>
-    <% if review.favorited_by?(current_user) %>
-        <p>
-          <%= link_to review_favorites_path(review), method: :delete do %>
-            ♥<%= review.favorites.count %> いいね
-          <% end %>
-        </p>
-    <% else %>
-        <p>
-          <%= link_to review_favorites_path(review), method: :post do %>
-            ♡<%= review.favorites.count %> いいね
-          <% end %>
-        </p>
-    <% end %>
-
-    <div>
-      <p>===== review for comment =====</p>
-      <%  review.posts.each do |p| %>
-        <%= p.user.name %>
-        <%= p.created_at.strftime('%Y/%m/%d') %>
-        <%= p.impression %>
-        <% if p.user == current_user %>
-          <div>
-            <%= link_to "削除", post_path(p), method: :delete %>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-
-    <div>
-      <%= form_with(model:[review, @post], local: true) do |f| %>
-        <%= f.text_area :impression,placeholder: "コメントをここに" %>
-        <%= f.submit "送信する" %>
-      <% end %>
-    </div>
-  <% end %>
-</div>
-

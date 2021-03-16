@@ -1,0 +1,44 @@
+<table class="table table-border">
+  <tr>
+    <!--imageが設定されていなければデフォルト画像-->
+    <th><%= attachment_image_tag user, :image, :fill, 60, 60, fallback: "no_image.jpg" %></th>
+    <th>
+      <!--ログインユーザーだった場合プロフィールを編集できる-->
+      <% if user.id == current_user.id %>
+        <%= link_to(edit_user_path(user.id)) do %>
+          <button class="btn btn-outline-secondary ml-3 text-success">プロフィール編集</button>
+        <% end %>
+      <% end %>
+    </th>
+  </tr>
+  <tr>
+    <td>ニックネーム</td>
+    <td><%= user.nickname %></td>
+  </tr>
+</table>
+<div class="m-3">
+  フォロー数：<%= link_to "#{user.follower.count}", follower_user_path(user.id), class: 'text-success' %><br>
+  フォロワー数：<%= link_to "#{user.followed.count}", followed_user_path(user.id), class: 'text-success' %>
+</div>
+<div class="m-3">
+  <!--ログインユーザーでない場合に表示する-->
+  <% unless user == current_user %>
+    <!--フォローユーザーにログインしているユーザーのIdがあればフォローを外すリンクを表示-->
+    <% if current_user.following?(user) %>
+      <%= link_to(user_unfollow_path(user.id), method: :POST) do %>
+        <button class="btn btn-outline-secondary text-success">フォローを外す</button>
+      <% end %>
+    <% else %>
+      <%= link_to(user_follow_path(user.id), method: :POST) do %>
+        <button class="btn btn-outline-secondary text-success">フォローする</button>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+<div class="ml-3">
+  <%= link_to(user_likes_path(user.id)) do %>
+    <button class="btn btn-outline-secondary text-success">お気に入り</button>
+  <% end %>
+</div>
+
+

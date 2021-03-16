@@ -1,8 +1,18 @@
-<table>
-<% @user.likes.each do |like| %>
-  <tr>
-    <td><%= image_tag(like.book.image_url) %></td>
-    <td><%= like.book.title %></td>
-  </tr>
-<% end %>
-</table>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 offset-3">
+      <table class="table table-stripe">
+        <tr>
+          <th></th>
+          <th>タイトル</th>
+        </tr>
+        <% @user.likes.each do |like| %>
+          <tr>
+            <td><%= link_to image_tag(like.book.image_url), book_path(like.book_id)  %></td>
+            <td><%= link_to like.book.title, book_path(like.book_id) %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
