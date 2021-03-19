@@ -5,6 +5,6 @@
       <h4>おすすめ年代選択</h4>
       <p>あなたがこの本をおすすめしたい年代を選んでさください</p>
       <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: '選択して下さい' }, class: 'form-control' %>
-    <%= f.submit "送信する", class: 'btn btn-outline-secondary' %>
+    <%= f.submit "送信する", class: 'btn btn-outline-secondary text-primary' %>
   <% end %>
 </div>

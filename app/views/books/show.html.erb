@@ -4,8 +4,8 @@
       <table class="table table-boder">
         <tr>
           <td>タイトル</td>
-          <%= image_tag(@book.image_url) %>
-          <td><%= @book.title %></td>
+          <%= link_to image_tag(@book.image_url), @book.url %>
+          <td><%= link_to @book.title, @book.url, class: 'text-success' %></td>
         </tr>
         <tr>
           <td>作者</td>
@@ -15,65 +15,42 @@
       <%= link_to(new_book_review_path(@book.id)) do %>
         <button class="btn btn-outline-secondary text-success text-success">投稿</button>
       <% end %>
-      <%= render "books/like", book: @book %>
+      <%= render "likes/like", book: @book %>
     </div>
     <div class="col-lg-8">
       <div class="review-list">
         <div class="row">
           <% @book.reviews.each do |review| %>
-            <div class="col-lg-3 text-center">
-              <%= attachment_image_tag review.user, :image, :size, 60,60, fallback: "no_image.jpg" %>
-              <div>
-                <% if review.favorited_by?(current_user) %>
-                  <%= link_to review_favorites_path(review), method: :delete do %>
-                    <button class="btn btn-outline-secondary bg-success text-light">
-                      <i class="fas fa-heart"></i>
-                      <%= review.favorites.count %> いいね
-                    </button>
-                  <% end %>
-                <% else %>
-                  <%= link_to review_favorites_path(review), method: :post do %>
-                    <button class="btn btn-outline-secondary">
-                      <i class="fas fa-heart-broken"></i>
-                      <%= review.favorites.count %> いいね
-                    </button>
-                  <% end %>
-                <% end %>
+            <div class="col-lg-3 text-center border-top border-bottom border-left p-4">
+              <%= attachment_image_tag review.user, :image, size: "100x100", fallback: "no_image.jpg" %>
+              <div id="favorites_buttons_<%= review.id %>">
+                <%= render partial: 'favorites/favorite', locals: { review: review } %>
               </div>
             </div>
-            <div class="col-lg-9">
+            <div class="col-lg-9 border-top border-bottom border-right p-4">
               <div>
                 <%= link_to review.user.name, user_path(review.user_id), class: 'text-success' %>
               </div>
               <div class="bg-light　w-100">
                 <%= review.content %>
               </div>
-              <%= review.created_at.strftime('%Y/%m/%d') %>
-              カテゴリー：<%= review.category.name %>
               <% if review.user == current_user %>
                 <div>
-                  <%= link_to(review_path(review), method: :delete) do %>
-                    <button class="btn btn-outline-secondary text-success">削除</button>
+                  <%= link_to(review_path(review), method: :delete, remote: :true) do %>
+                    <button class="btn btn-outline-secondary text-danger">
+                      削除
+                    </button>
                   <% end %>
                 </div>
               <% end %>
+              <div id="post_comments_buttons_<%= review.id %>">
+                <%= render partial: 'post_comments/post_comment', locals: { review: review } %>
+              </div>
+              <div id="post_comments_error_<%= review.id %>">
+                <%= render 'layouts/error', model: @post_comment %>
+              </div>
               <div>
-                <%  review.posts.each do |comment| %>
-                  <%= comment.user.name %>
-                  <%= comment.created_at.strftime('%Y/%m/%d') %>
-                  <%= comment.impression %>
-                  <% if comment.user == current_user %>
-                    <div>
-                      <%= link_to "削除", post_path(comment), method: :delete %>
-                    </div>
-                  <% end %>
-                <% end %>
-                <div>
-                  <%= form_with(model:[review, @post], local: true) do |f| %>
-                    <%= f.text_area :impression,placeholder: "コメントをここに", class: 'form-control' %>
-                    <%= f.submit "送信する" %>
-                  <% end %>
-                </div>
+                <%= render partial: 'post_comments/form', locals: {post_comment: @post_comment, review: review } %>
               </div>
             </div>
           <% end %>

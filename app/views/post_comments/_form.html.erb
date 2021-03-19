@@ -1,0 +1,9 @@
+<!--コメントフォームをクリックしたらreviewに基づいた送信ボタンが表示されるようにしている-->
+<div data-toggle="collapse" data-target="#post_comment_form_<%= review.id %>" aria-expanded="false" aria-controls="#post_comment_form_<%= review.id %>">
+  <%= form_with(model:[review, post_comment]) do |f| %>
+    <%= f.text_area :impression,placeholder: "コメントをここに", class: 'form-control' %>
+    <div class="mt-4 collapse" id="post_comment_form_<%= review.id %>">
+      <%= f.submit "送信する", class: 'btn btn-outline-secondary text-primary' %>
+    </div>
+  <% end %>
+</div>

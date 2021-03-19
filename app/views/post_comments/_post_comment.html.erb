@@ -1,0 +1,21 @@
+<%  review.post_comments.each do |post_comment| %>
+  <div class="border bg-light m-3">
+    <div class="row">
+      <div class="col-lg-3">
+        <%= attachment_image_tag post_comment.user, :image, size: "50x50", fallback: "no_image.jpg", class: 'm-2' %>
+      </div>
+      <div class="col-lg-9">
+        <%= link_to post_comment.user.name, user_path(post_comment.user_id), class: 'text-success' %><br>
+        <%= post_comment.impression %><br>
+        <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+        <% if post_comment.user == current_user %>
+          <%= link_to(post_comment_path(post_comment), method: :delete) do %>
+            <button class="btn btn-outline-secondary text-danger">
+              削除
+            </button>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -23,21 +23,14 @@
 <div class="m-3">
   <!--ログインユーザーでない場合に表示する-->
   <% unless user == current_user %>
-    <!--フォローユーザーにログインしているユーザーのIdがあればフォローを外すリンクを表示-->
-    <% if current_user.following?(user) %>
-      <%= link_to(user_unfollow_path(user.id), method: :POST) do %>
-        <button class="btn btn-outline-secondary text-success">フォローを外す</button>
-      <% end %>
-    <% else %>
-      <%= link_to(user_follow_path(user.id), method: :POST) do %>
-        <button class="btn btn-outline-secondary text-success">フォローする</button>
-      <% end %>
-    <% end %>
+    <div id="likes_buttons_<%= user.id %>">
+      <%= render partial: 'users/like', locals: { user: user } %>
+    </div>
   <% end %>
 </div>
 <div class="ml-3">
   <%= link_to(user_likes_path(user.id)) do %>
-    <button class="btn btn-outline-secondary text-success">お気に入り</button>
+    <button class="btn btn-outline-secondary text-success">お気に入り一覧</button>
   <% end %>
 </div>
 

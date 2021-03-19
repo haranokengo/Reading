@@ -1,6 +1,7 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-6 offset-3">
+      <%= render 'layouts/error', model: @review %>
       <%= render "reviews/form", book: @book, review: @review %>
     </div>
   </div>

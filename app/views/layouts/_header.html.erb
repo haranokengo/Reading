@@ -2,8 +2,12 @@
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
       <div>
-        <%= link_to(root_path) do %>
-          <button class="btn btn-outline-secondary btn-fishy text-info">Reading</button>
+        <% if admin_admin_signed_in? %>
+          <%= link_to 'Reading', root_path, class: 'nav-link text-dark text-info' %>
+        <% elsif user_signed_in? %>
+          <%= link_to(root_path) do %>
+            <button class="btn btn-outline-secondary btn-fishy text-info">Reading</button>
+          <% end %>
         <% end %>
       </div>
       <div>
@@ -35,7 +39,7 @@
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to(destroy_user_session_path) do %>
+            <%= link_to(destroy_user_session_path, method: :delete) do %>
               <button class="btn btn-outline-secondary btn-fishy text-info">ログアウト</button>
             <% end %>
           </li>

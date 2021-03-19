@@ -1,0 +1,18 @@
+ja:
+  activerecord:
+    models:
+      post_comment: コメント
+      review: レビュー
+      user: ユーザー
+    attributes:
+      post_comment:
+        impression: コメント
+      review:
+        content: 投稿内容内容
+        category: おすすめ年代選択
+      user:
+        name: 名前
+        nickname: ニックネーム
+        email: メールアドレス
+        password: パスワード
+        

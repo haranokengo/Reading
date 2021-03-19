@@ -2,7 +2,7 @@
   <h4>最近レビューされた本</h4>
   <div class="row">
     <div class="col-lg-4">
-      <table class="table table-stripe bg-light"> 
+      <table class="table table-stripe bg-light">
         <% @reviews.each do |reviews| %>
           <thead>
             <tr>
@@ -33,8 +33,10 @@
                 <i class="fas fa-crown text-warning"></i>
               <% elsif i == 2 %>
                 <i class="fas fa-crown text-secondary"></i>
-              <% elsif i ==  %>
+              <% elsif i == 3 %>
                 <i class="fas fa-crown copper"></i>
+              <% else %>
+                <div>　</div>
               <% end %>
               第<%= i %>位
             </td>

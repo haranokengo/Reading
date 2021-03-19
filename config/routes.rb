@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     root to: 'homes#top'
 
     get 'about' => 'homes#about'
-
+    
     devise_for :users, controllers: {
       sessions: 'users/sessions',
       passwords: 'users/passwords',
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
       # ネスト化が２階層で深くなっているためshallowオプションを使用して浅くしている
       resources :reviews, only: [:create, :destroy, :new], shallow: true  do
         # reviewに結びつけている
-        resources :posts, only: [:create, :destroy]
+        resources :post_comments, only: [:create, :destroy]
         resource :favorites, only: [:create, :destroy]
       end
       resources :likes, only: [:create, :destroy]

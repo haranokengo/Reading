@@ -1,30 +1,33 @@
 <div class="container mt-5">
   <div class="row">
+    <!--検索バーを表示-->
     <div class="col-lg-4">
       <%= form_tag(books_search_path, method: :get) do %>
         <%= text_field_tag :title, @title %>
-        <%= button_tag '検索', class: "btn btn-outline-secondary text-success" %>
+        <%= button_tag '検索', class: "btn btn-outline-secondary text-primary" %>
       <% end %>
     </div>
+    <!--検索結果を表示-->
     <div class="col-lg-8">
-      <% if @books %>
+      <table class="table table-boder pull-left">
+        <tr>
+          <th>画像</th>
+          <th>タイトル</th>
+          <th>作者</th>
+        </tr>
         <% @books.each do |book| %>
-          <table class="table table-boder pull-left">
-            <tr>
-              <th>画像</th>
-              <th>タイトル</th>
-              <th>作者</th>
-            </tr>
-            <tr>
-              <td><%= image_tag book.image_url %></td>
-              <td><%= link_to book.title, book_path(book.id), class: 'text-success' %></td>
+          <tr>
+            <td><%= link_to image_tag(book.image_url), book_path(book.id) %></td>
+            <td><%= link_to book.title, book_path(book.id), class: 'text-success' %></td>
+            <% if book.author.present? %>
               <td><%= book.author %></td>
-            </tr>
-          </table>
-      <% end %>
-    <% end %>
+            <% else %>
+              <td>データがありません</td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+      <%= paginate @books %>
     </div>
-
-    
   </div>
 </div>
