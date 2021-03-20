@@ -12,7 +12,7 @@
       </div>
       <div>
         <% if user_signed_in? %>
-          <span><%= current_user.name %>さん こんにちは</span>
+          <span><%= current_user.nickname %>さん こんにちは</span>
         <% elsif admin_admin_signed_in? %>
           <span>管理者ページです</span>
         <% end %>
@@ -57,6 +57,11 @@
           <li class="nav-item">
             <%= link_to(new_admin_admin_session_path) do %>
               <button class="btn btn-outline-secondary btn-fishy text-info">管理者</button>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to(users_guest_sign_in_path, method: :post) do %>
+              <button class="btn btn-outline-secondary btn-fishy text-info">ゲストログイン（閲覧用）</button>
             <% end %>
           </li>
         <% end %>

@@ -1,8 +1,12 @@
-<h2>フォロー一覧</h2>
+<div class="m-5">
+  <h2>フォロー一覧</h2>
+</div>
 <table class="table col-lg-12">
-  <thead></thead>
+  <thead>
   <% if @users.empty? %>
-    <span>ユーザーはいません</span>
+   <div class="col-md-6 offset-3">
+     ユーザーはいません
+   </div>
   <% else %>
     <tr>
       <th>image</th>

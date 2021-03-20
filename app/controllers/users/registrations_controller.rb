@@ -3,6 +3,20 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  before_action :ensure_normal_user, only: :destroy
+
+  def ensure_normal_user
+    if resource.email == 'guest@example.com'
+      flash[:danger] = 'ゲストユーザーは削除できません。'
+      redirect_to root_path
+    end
+  end
+
+  def destroy
+    current_user.destroy
+    flash[:success] = '退会しました。'
+    redirect_to root_path
+  end
 
   # GET /resource/sign_up
   # def new
@@ -11,8 +25,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    super
-    WelcomeMailer.with(user: @user).welcome_email.deliver_later
+      @user = User.new(user_params)
+      if @user.save
+        WelcomeMailer.with(user: @user).welcome_email.deliver_later
+        sign_in @user
+        flash[:success] = "登録完了しました"
+        redirect_to root_path
+      else
+        render "new"
+      end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :nickname, :email, :password)
   end
 
   # GET /resource/edit

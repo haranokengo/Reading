@@ -8,10 +8,10 @@
         <%= link_to(edit_user_path(user.id)) do %>
           <button class="btn btn-outline-secondary ml-3 text-success">プロフィール編集</button>
         <% end %>
+        <div>
+          <%= link_to "退会する",user_registration_path, class: "destroy-user m-4", method: :delete, data: {confirm: "本当に退会しますか？"} %>
+        </div>
       <% end %>
-      <div>
-        <%= link_to "退会する",user_path(current_user.id), class: "destroy-user m-4",method: :delete, data: {confirm: "本当に退会しますか？"} %>
-      </div>
     </th>
   </tr>
   <tr>
