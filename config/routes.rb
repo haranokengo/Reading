@@ -34,7 +34,7 @@ Rails.application.routes.draw do
       resources :likes, only: [:create, :destroy]
     end
 
-    resources :users, only: [:show, :edit, :update] do
+    resources :users, only: [:show, :edit, :update, :destroy] do
       resources :likes, only: [:index]
       # フォローする
       post 'follow/:id' => 'relationships#follow', as: 'follow'

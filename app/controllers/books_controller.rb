@@ -30,12 +30,10 @@ class BooksController < ApplicationController
         book.save
       end
     end
-    #bookテーブルに保存したものをpegaメソッドを使って表示させている
-    @books = Book.page(params[:page]).reverse_order
   end
-  
+
   private
-  
+
   def read(result)
     title = result["title"]
     author = result["author"]

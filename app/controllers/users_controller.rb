@@ -25,6 +25,13 @@ class UsersController < ApplicationController
     @users = @user.follower_user
   end
   
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[:success] = '退会しました。'
+    redirect_to :root
+  end
+  
   private
   
   def user_params
