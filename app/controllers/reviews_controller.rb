@@ -1,5 +1,4 @@
 class ReviewsController < ApplicationController
-
   def new
     @book = Book.find(params[:book_id])
     @review = Review.new
@@ -7,10 +6,12 @@ class ReviewsController < ApplicationController
 
   def create
     @book = Book.find(params[:book_id])
+    # current_userに紐付いているreviewを保存するために取得
     @review = current_user.reviews.new(review_params)
+    # book_idに紐付いているreviewを保存するために取得
     @review.book_id = @book.id
     if @review.save
-      redirect_to book_path(book)
+      redirect_to book_path(@book)
     else
       render :new
     end
@@ -26,5 +27,4 @@ class ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:content, :category_id)
   end
-
 end

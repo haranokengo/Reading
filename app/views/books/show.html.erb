@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-5">
       <table class="table table-boder">
         <tr>
           <td>タイトル</td>
@@ -11,13 +11,18 @@
           <td>作者</td>
           <td><%= @book.author %></td>
         </tr>
+        <tr>
+          <td>お気に入り登録者数</td>
+          <td><%= @book.likes.count %></td>
+        </tr>
       </table>
+      <!--link_toの範囲を全体にするために「link_to do」で囲っている-->
       <%= link_to(new_book_review_path(@book.id)) do %>
         <button class="btn btn-outline-secondary text-success text-success">投稿</button>
       <% end %>
       <%= render "likes/like", book: @book %>
     </div>
-    <div class="col-lg-8">
+    <div class="col-lg-7">
       <div class="review-list">
         <div class="row">
           <% @book.reviews.each do |review| %>
@@ -34,18 +39,21 @@
               <div class="bg-light　w-100">
                 <%= review.content %>
               </div>
+              <!--reviewを削除できるのがcurrent_user飲みにするため条件分岐-->
               <% if review.user == current_user %>
                 <div>
                   <%= link_to(review_path(review), method: :delete, remote: :true, data: {confirm: "削除しますか？"}) do %>
                     <button class="btn btn-outline-secondary text-danger">
-                      削除
+                      レビューを削除
                     </button>
                   <% end %>
                 </div>
               <% end %>
+              <!--reviewに紐付いたpost_commentを非同期で更新するための部分テンプレート-->
               <div id="post_comments_buttons_<%= review.id %>">
                 <%= render partial: 'post_comments/post_comment', locals: { review: review } %>
               </div>
+              <!--reviewに紐付いたpost_commentを投稿した際に、そのpost_commentに紐付いたエラーを表示させるために記述-->
               <div id="post_comments_error_<%= review.id %>">
                 <%= render 'layouts/error', model: @post_comment %>
               </div>

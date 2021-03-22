@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_18_095646) do
+ActiveRecord::Schema.define(version: 2021_03_21_121722) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 2021_03_18_095646) do
     t.integer "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_active", default: false, null: false
     t.index ["book_id"], name: "index_likes_on_book_id"
     t.index ["user_id", "book_id"], name: "index_likes_on_user_id_and_book_id", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
@@ -86,6 +87,7 @@ ActiveRecord::Schema.define(version: 2021_03_18_095646) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "category_id"
+    # 「book」と「user」のデータが多くなるため、index型にして処理速度を早くするためにしている
     t.index ["book_id"], name: "index_reviews_on_book_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end

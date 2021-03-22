@@ -31,10 +31,13 @@
     </div>
   <% end %>
 </div>
-<div class="ml-3">
+<div class="m-3">
   <%= link_to(user_likes_path(user.id)) do %>
-    <button class="btn btn-outline-secondary text-success">お気に入り一覧</button>
+    <button class="btn btn-outline-secondary text-success">読みたい本</button>
   <% end %>
 </div>
-
-
+<div class="m-3">
+  <%= link_to(user_likes_readed_all_path(user.id)) do %>
+    <button class="btn btn-outline-secondary text-success">読んだ本</button>
+  <% end %>
+</div>

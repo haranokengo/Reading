@@ -68,7 +68,7 @@ gem 'refile', require: 'refile/rails', github: 'manfe/refile'
 gem 'refile-mini_magick'
 
 # 楽天APIを使用
-gem 'rakuten_web_service' 
+gem 'rakuten_web_service'
 # 環境変数のジェム
 gem 'dotenv-rails'
 gem 'pry-rails'
@@ -76,8 +76,9 @@ gem 'pry-rails'
 gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.13'
-gem 'kaminari','~> 1.2.1'
+gem 'kaminari', '~> 1.2.1'
 gem 'rails-i18n'
+gem 'rubocop-airbnb'
 
 group :production do
   gem 'mysql2'

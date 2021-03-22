@@ -1,5 +1,4 @@
 class Review < ApplicationRecord
-  
   validates :content, presence: true
 
   belongs_to :user
@@ -10,8 +9,8 @@ class Review < ApplicationRecord
   has_many :favorites, dependent: :destroy
   belongs_to :category
 
+  # 同じ投稿に対していいねを２回することができないようにするためuser_idの確認をしている
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end
-  
 end

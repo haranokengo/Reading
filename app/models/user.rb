@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-
   validates :name, presence: true
   validates :nickname, presence: true
   validates :email, presence: true
@@ -35,11 +34,12 @@ class User < ApplicationRecord
   end
 
   def self.guest
+    # ゲストユーザーが仮に削除されたとしても、機能するようにしている
     find_or_create_by!(email: 'guest@example.com',) do |user|
+      # パスワーそをランダムに設定している
       user.password = SecureRandom.urlsafe_base64
       user.name = "ゲスト"
       user.nickname = "ゲストさん"
     end
   end
-
 end

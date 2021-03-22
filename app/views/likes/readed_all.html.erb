@@ -8,25 +8,21 @@
       <!--お気に入り本「likeモデル」にデータがある場合とない場合で条件分岐-->
       <% if @user.likes.empty? %>
         <div class="m-5">
-          読みたい本はありません
+          読んだ本はまだありません
         </div>
       <% else %>
+        <h4>今まで読んだ本</h4>
         <table class="table table-stripe">
-          <h4>読みたい本</h4>
           <tr>
             <th></th>
             <th>タイトル</th>
           </tr>
           <% @user.likes.each do |like| %>
-          <!--「is_active: false」のみを表示させるため-->
-          <!--読んでいない本のみが表示されるように-->
-            <% unless like.is_active %>
+          <!--読んだ本のみが表示されるように-->
+            <% if like.is_active %>
               <tr>
                 <td><%= link_to image_tag(like.book.image_url), book_path(like.book_id)  %></td>
                 <td><%= link_to like.book.title, book_path(like.book_id), class: 'text-success' %></td>
-                <% if like.user == current_user %>
-                  <td><%= link_to '読んだ', user_like_path(@user, like.id, like: {is_active: true}), method: :put %></td>
-                <% end %>
               </tr>
             <% end %>
           <% end %>

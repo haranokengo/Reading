@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
+    # 新規登録時にメールとニックネームの入力追加
     devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :nickname])
   end
-
 end

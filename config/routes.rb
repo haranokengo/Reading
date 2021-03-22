@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
-  
   root to: 'homes#top'
   get 'about' => 'homes#about'
   get '/search' => 'searchs#search'
   get 'books/search' => 'books#search'
   get '/ranks' => 'ranks#index'
-  
+
   # ファイル構成とurlも指定のパスにして管理者側がわかるようにnamespaceを使用
   namespace :admin do
     devise_for :admins, controllers: {
@@ -19,9 +18,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     passwords: 'users/passwords',
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
   }
-  
+
   # ゲストログイン
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#new_guest'
@@ -30,16 +29,17 @@ Rails.application.routes.draw do
   resources :books, only: [:create, :edit, :update, :destroy, :show] do
     # bookに結びつけてネスト化
     # ネスト化が２階層で深くなっているためshallowオプションを使用して浅くしている
-    resources :reviews, only: [:create, :destroy, :new], shallow: true  do
+    resources :reviews, only: [:create, :destroy, :new], shallow: true do
       # reviewに結びつけている
       resources :post_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
     resources :likes, only: [:create, :destroy]
   end
-  
+
   resources :users, only: [:show, :edit, :update, :destroy] do
-    resources :likes, only: [:index]
+    resources :likes, only: [:index, :update]
+    get 'likes/readed_all' => 'likes#readed_all'
     # フォローする
     post 'follow/:id' => 'relationships#follow', as: 'follow'
     # フォロー外す
@@ -49,4 +49,3 @@ Rails.application.routes.draw do
     get :followed, on: :member
   end
 end
-

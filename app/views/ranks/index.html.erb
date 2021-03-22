@@ -29,6 +29,7 @@
         <% @all_ranks.each.with_index(1) do |book, i| %>
           <tr>
             <td>
+              <!--順位によって、表示を変更するために条件分岐をしている-->
               <% if i == 1 %>
                 <i class="fas fa-crown text-warning"></i>
               <% elsif i == 2 %>

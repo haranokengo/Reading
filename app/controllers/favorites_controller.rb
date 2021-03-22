@@ -1,4 +1,5 @@
 class FavoritesController < ApplicationController
+  # いいね機能
 
   def create
     @review = Review.find(params[:review_id])
@@ -11,5 +12,4 @@ class FavoritesController < ApplicationController
     @favorite = current_user.favorites.find_by(review_id: @review.id)
     @favorite.destroy
   end
-
 end

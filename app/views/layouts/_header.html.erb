@@ -2,6 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
       <div>
+        <!--管理者、ユーザーで「reading」の表示を変えたいため条件分岐-->
         <% if admin_admin_signed_in? %>
           <%= link_to 'Reading', root_path, class: 'nav-link text-dark text-info' %>
         <% elsif user_signed_in? %>
@@ -11,6 +12,7 @@
         <% end %>
       </div>
       <div>
+        <!--管理者とユーザーでヘッダーに表示される言葉を変えている-->
         <% if user_signed_in? %>
           <span><%= current_user.nickname %>さん こんにちは</span>
         <% elsif admin_admin_signed_in? %>
@@ -18,6 +20,7 @@
         <% end %>
       </div>
       <ul class="navbar-nav ml-auto">
+        <!--管理者とユーザーでヘッダーの表示内容を変えている-->
         <% if admin_admin_signed_in? %>
           <li class="nav-item"><%= link_to 'ユーザー一覧', admin_users_path, class: 'nav-link text-dark text-info' %></li>
           <li class="nav-item"><%= link_to 'カテゴリー一覧', admin_categories_path, class: 'nav-link text-dark text-info' %></li>

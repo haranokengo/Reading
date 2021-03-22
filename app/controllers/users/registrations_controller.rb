@@ -25,15 +25,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-      @user = User.new(user_params)
-      if @user.save
-        WelcomeMailer.with(user: @user).welcome_email.deliver_later
-        sign_in @user
-        flash[:success] = "登録完了しました"
-        redirect_to root_path
-      else
-        render "new"
-      end
+    @user = User.new(user_params)
+    if @user.save
+      WelcomeMailer.with(user: @user).welcome_email.deliver_later
+      sign_in @user
+      flash[:success] = "登録完了しました"
+      redirect_to root_path
+    else
+      render "new"
+    end
   end
 
   private

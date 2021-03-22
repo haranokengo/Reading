@@ -5,6 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# 管理者のデータが消えないように「seed」に記入している
 Admin.create!(
   name: 'test',
   email: 'test@test',

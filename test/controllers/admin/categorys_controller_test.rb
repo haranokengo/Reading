@@ -10,5 +10,4 @@ class Admin::CategorysControllerTest < ActionDispatch::IntegrationTest
     get admin_categorys_index_url
     assert_response :success
   end
-
 end
