@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   validates :name, presence: true
   validates :nickname, presence: true
+  # ニックネームが被らないように
+  validates :nickname, uniqueness: true
   validates :email, presence: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

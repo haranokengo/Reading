@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  before_action :guest_user, only: :new
+
   def new
     @book = Book.find(params[:book_id])
     @review = Review.new

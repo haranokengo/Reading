@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :guest_user, only: :update
+
   def show
     @user = User.find(params[:id])
     @categories = Category.all

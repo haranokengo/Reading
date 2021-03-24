@@ -1,6 +1,5 @@
 class FavoritesController < ApplicationController
   # いいね機能
-
   def create
     @review = Review.find(params[:review_id])
     @favorite = current_user.favorites.new(review_id: @review.id)

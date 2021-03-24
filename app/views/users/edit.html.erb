@@ -3,7 +3,6 @@
     <div class="col-md-6 offset-3 text-center">
       <h1>編集画面</h1>
       <%= flash[:notice] %>
-      <%= flash[:alert] %>
       <%= form_with model:@user, local:true do |f| %>
         <div class="form-group">
           <%= attachment_image_tag @user, :image, :fill, 60, 60, fallback: "no_image.jpg" %><br>

@@ -1,0 +1,34 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="border bg-light p-5">
+        <table class="table table-border">
+          <% @categories.each do |category| %>
+          <tr>
+              <td class="text-center">
+                <%= link_to "#{(category.name)}におすすめ", search_path(category_id: category.id) %>
+              </td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+    <div class="col-lg-8 bg-light p-5">
+      <% if @datas.empty? %>
+        <h2 class="mt-5">該当する本はありません</h2>
+      <% end %>
+      <table class="table">
+        <% @datas.each do |data| %>
+          <tr>
+            <td><%= link_to image_tag(data.image_url), book_path(data.id) %></td>
+            <td>
+              名前：<%= link_to data.title, book_path(data.id), class: 'text-success' %><br>
+              作者：<%= data.author %><br>
+              レビュー数：<%= data.reviews.count %>件
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

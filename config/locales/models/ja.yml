@@ -4,6 +4,7 @@ ja:
       post_comment: コメント
       review: レビュー
       user: ユーザー
+      category: カテゴリー
     attributes:
       post_comment:
         impression: コメント
@@ -15,4 +16,6 @@ ja:
         nickname: ニックネーム
         email: メールアドレス
         password: パスワード
+      category:
+        name: カテゴリー
         

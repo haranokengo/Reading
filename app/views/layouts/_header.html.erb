@@ -7,11 +7,13 @@
           <%= link_to 'Reading', root_path, class: 'nav-link text-dark text-info' %>
         <% elsif user_signed_in? %>
           <%= link_to(root_path) do %>
-            <button class="btn btn-outline-secondary btn-fishy text-info">Reading</button>
+            <button class="btn btn-outline-secondary btn-fishy text-info">
+              Reading
+            </button>
           <% end %>
         <% end %>
       </div>
-      <div>
+      <div class="ml-5">
         <!--管理者とユーザーでヘッダーに表示される言葉を変えている-->
         <% if user_signed_in? %>
           <span><%= current_user.nickname %>さん こんにちは</span>

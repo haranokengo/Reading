@@ -1,5 +1,5 @@
-<!--折りたたみ式にするために指定している-->
-<button type="button" class="btn btn-outline-secondary m-3 text-success" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+<!--カテゴリー折りたたみ式にするために指定している-->
+<button type="button" class="btn btn-outline-secondary ml-3 mb-5 text-success" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
     カテゴリー検索
 </button>
 <!--折り畳みの範囲を指定するために「id="collapseExample"」を付与している-->
@@ -9,7 +9,7 @@
         <% categories.each do |category| %>
         <tr>
             <td class="text-center">
-              <%= link_to "#{(category.name)}におすすめ", search_path('search[value]': category.id, 'search[how]': "match") %>
+              <%= link_to "#{(category.name)}におすすめ", search_path(category_id: category.id) %>
             </td>
         </tr>
         <% end %>

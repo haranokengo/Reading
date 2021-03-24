@@ -13,6 +13,15 @@ class ApplicationController < ActionController::Base
     root_path
   end
 
+  # ゲストユーザーが編集、退会できないようにメールアドレスで判断している
+  def guest_user
+    @user = User.find_by(email: 'guest@example.com')
+    if @user == current_user
+      flash[:danger] = 'ゲストユーザーは編集・投稿が出来ません'
+      redirect_back(fallback_location: root_path)
+    end
+  end
+
   protected
 
   def configure_permitted_parameters

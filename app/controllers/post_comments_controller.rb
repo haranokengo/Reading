@@ -1,4 +1,6 @@
 class PostCommentsController < ApplicationController
+  before_action :guest_user, only: :create
+
   def create
     @review = Review.find(params[:review_id])
     # user_idに紐付いたpost_commentのテーブルを作るために取得
