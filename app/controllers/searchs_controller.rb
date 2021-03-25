@@ -1,4 +1,5 @@
 class SearchsController < ApplicationController
+  before_action :authenticate_user!
   def search
     # カテゴリーの一覧をおすすめの横に表示するため
     @categories = Category.all

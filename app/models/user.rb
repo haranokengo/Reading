@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  validates :name, presence: true
-  validates :nickname, presence: true
+  validates :name, presence: true, length: { minimum: 2, maximum: 20 }
+  validates :nickname, presence: true, length: { minimum: 2, maximum: 20 }
   # ニックネームが被らないように
   validates :nickname, uniqueness: true
   validates :email, presence: true

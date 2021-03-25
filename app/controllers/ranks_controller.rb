@@ -1,4 +1,5 @@
 class RanksController < ApplicationController
+  before_action :authenticate_user!
   def index
     # 投稿の新しい順の投稿一覧(descは降順)
     @reviews = Review.all.order(created_at: :desc).limit(5)

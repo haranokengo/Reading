@@ -1,4 +1,5 @@
 class FavoritesController < ApplicationController
+  before_action :authenticate_user!
   # いいね機能
   def create
     @review = Review.find(params[:review_id])

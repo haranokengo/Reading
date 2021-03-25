@@ -1,4 +1,5 @@
 class LikesController < ApplicationController
+  before_action :authenticate_user!
   # お気に入り（読みたい本）機能
   def index
     # 読みたい本一覧をviewに渡すためにuser情報を取得

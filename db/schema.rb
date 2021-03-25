@@ -87,7 +87,6 @@ ActiveRecord::Schema.define(version: 2021_03_21_121722) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "category_id"
-    # 「book」と「user」のデータが多くなるため、index型にして処理速度を早くするためにしている
     t.index ["book_id"], name: "index_reviews_on_book_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end

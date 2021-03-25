@@ -1,4 +1,5 @@
 class PostCommentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :guest_user, only: :create
 
   def create

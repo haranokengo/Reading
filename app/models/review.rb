@@ -1,5 +1,5 @@
 class Review < ApplicationRecord
-  validates :content, presence: true
+  validates :content, presence: true, length: { minimum: 10, maximum: 150 }
 
   belongs_to :user
   # primary_keyをbook_idからisbn

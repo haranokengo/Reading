@@ -1,4 +1,5 @@
 class Admin::CategoriesController < ApplicationController
+  before_action :authenticate_admin!
   def edit
     @category = Category.find(params[:id])
   end
