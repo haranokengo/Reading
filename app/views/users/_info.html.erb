@@ -26,8 +26,8 @@
 <div class="m-3">
   <!--ログインユーザーでない場合に表示する-->
   <% unless user == current_user %>
-    <div id="likes_buttons_<%= user.id %>">
-      <%= render partial: 'users/like', locals: { user: user } %>
+    <div id="follows_buttons_<%= user.id %>">
+      <%= render partial: 'users/follow', locals: { user: user } %>
     </div>
   <% end %>
 </div>

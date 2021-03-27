@@ -1,17 +1,16 @@
 <div class="container mt-5">
   <div class="row">
-    <div class="col-lg-4 bg-light">
-      <%=render "users/info", user: @user %>
-      <%=render "users/category", categories: @categories %>
-    </div>
-    <div class="col-lg-8">
+    <div class="col-md-6 offset-3">
       <!--お気に入り本「likeモデル」にデータがある場合とない場合で条件分岐-->
       <% if @user.likes.empty? %>
         <div class="m-5">
           読んだ本はまだありません
         </div>
       <% else %>
-        <h4>今まで読んだ本</h4>
+        <div>
+          <%= @user.name %>
+          さんの今まで読んだ本
+        </div>
         <table class="table table-stripe">
           <tr>
             <th></th>

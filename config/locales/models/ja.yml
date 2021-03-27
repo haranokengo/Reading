@@ -9,7 +9,7 @@ ja:
       post_comment:
         impression: コメント
       review:
-        content: 投稿内容内容
+        content: 投稿内容
         category: おすすめ年代選択
       user:
         name: 名前
@@ -18,4 +18,3 @@ ja:
         password: パスワード
       category:
         name: カテゴリー
-        

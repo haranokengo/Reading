@@ -12,3 +12,7 @@ Admin.create!(
   email: 'test@test',
   password: 'testtest',
 )
+
+Category.create!(
+  name: '10代'
+)
