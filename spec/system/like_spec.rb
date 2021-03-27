@@ -1,5 +1,3 @@
-# require 'rails_helper'
-
 RSpec.describe 'likeのリクエストのテスト', type: :request do
   let!(:user) { FactoryBot.create(:user) }
   let(:book) { FactoryBot.create(:book) }

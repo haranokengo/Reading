@@ -1,5 +1,3 @@
-# require 'rails_helper'
-
 RSpec.describe 'favoriteのリクエストテスト', type: :request do
   let!(:review) { FactoryBot.create(:review) }
   let!(:user) { FactoryBot.create(:user, password: 'password') }
@@ -15,7 +13,7 @@ RSpec.describe 'favoriteのリクエストテスト', type: :request do
       end.to change(Favorite, :count).by(1)
     end
     it "いいねされている場合、いいねが削除される" do
-      expect{ favorite.destroy }.to change{ Favorite.count }.by(-1)
+      expect { favorite.destroy }.to change{ Favorite.count }.by(-1)
     end
   end
 end
