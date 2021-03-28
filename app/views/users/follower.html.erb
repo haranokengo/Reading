@@ -10,8 +10,8 @@
     </div>
   <% else %>
     <tr>
-      <th>image</th>
-      <th>name</th>
+      <th>画像</th>
+      <th>ニックネーム</th>
       <th></th>
       <th></th>
       <th></th>
@@ -22,7 +22,7 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= attachment_image_tag(user, :image, :fill, 50, 50, fallback: "no_image.jpg") %></td>
-        <td><%= user.name %></td>
+        <td><%= user.nickname %></td>
         <td>フォロー数：<%= user.follower.count %></td>
         <td>フォロワー数：<%= user.followed.count %></td>
         <td>
