@@ -34,7 +34,7 @@
             </div>
             <div class="col-lg-9 border-top border-bottom border-right p-4">
               <div>
-                <%= link_to review.user.name, user_path(review.user_id), class: 'text-success' %>
+                <%= link_to review.user.nickname, user_path(review.user_id), class: 'text-success' %>
               </div>
               <div class="bg-light　w-100">
                 <%= review.content %>

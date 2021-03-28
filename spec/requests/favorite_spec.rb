@@ -2,9 +2,10 @@ RSpec.describe 'favoriteのリクエストテスト', type: :request do
   let!(:review) { FactoryBot.create(:review) }
   let!(:user) { FactoryBot.create(:user, password: 'password') }
   let!(:favorite) { FactoryBot.create(:favorite) }
-  before {
-    post user_session_path,params:{ user: {name:user.name,password:user.password}}
-  }
+
+  before do
+    post user_session_path, params: { user: { name: user.name, password: user.password } }
+  end
 
   describe 'いいねのテスト' do
     it "いいねされていない場合、いいねができる" do
@@ -13,7 +14,7 @@ RSpec.describe 'favoriteのリクエストテスト', type: :request do
       end.to change(Favorite, :count).by(1)
     end
     it "いいねされている場合、いいねが削除される" do
-      expect { favorite.destroy }.to change{ Favorite.count }.by(-1)
+      expect { favorite.destroy }.to change(Favorite, :count).by(-1)
     end
   end
 end

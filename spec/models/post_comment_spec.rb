@@ -1,7 +1,3 @@
-# frozen_string_literal: true
-
-require 'rails_helper'
-
 RSpec.describe 'PostCommentモデルのテスト', type: :model do
   describe 'バリデーションのテスト' do
     subject { post_comment.valid? }
@@ -17,7 +13,9 @@ RSpec.describe 'PostCommentモデルのテスト', type: :model do
       it 'impressionカラムが空だとエラーメッセージが表示される' do
         post_comment.impression = ''
         post_comment.valid?
-        expect(post_comment.errors.full_messages).to include("コメントが入力されていません。","コメントは10文字以上に設定して下さい。")
+        expect do
+          post_comment.errors.full_messages.to include("コメントが入力されていません。", "コメントは10文字以上に設定して下さい。")
+        end
       end
       it '10文字以上であること: 9文字は×' do
         post_comment.impression = Faker::Lorem.characters(number: 9)
@@ -54,6 +52,7 @@ RSpec.describe 'PostCommentモデルのテスト', type: :model do
         expect(PostComment.reflect_on_association(:review).macro).to eq :belongs_to
       end
     end
+
     context 'Userモデルとの関係' do
       it '1:Nとなっている' do
         expect(PostComment.reflect_on_association(:user).macro).to eq :belongs_to

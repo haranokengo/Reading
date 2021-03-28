@@ -20,7 +20,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     @user = User.new(user_params)
     if @user.save
-      WelcomeMailer.with(user: @user).welcome_email.deliver_later
+      WelcomeMailer.with(user: @user).welcome_email.deliver_now
       sign_in @user
       flash[:success] = "登録完了しました"
       redirect_to root_path

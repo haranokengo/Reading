@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resource)
+    # 管理者とユーザーでページを分けたいため
     if admin_admin_signed_in?
       admin_categories_path
     elsif user_signed_in?

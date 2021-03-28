@@ -1,14 +1,10 @@
-# frozen_string_literal: true
-
-require 'rails_helper'
-
 RSpec.describe 'Reviewモデルのテスト', type: :model do
   describe 'バリデーションのテスト' do
     subject { review.valid? }
 
     let(:user) { create(:user) }
     let!(:review) { build(:review, user_id: user.id) }
-    
+
     context 'contentカラム' do
       it '空欄でないこと' do
         review.content = ''
@@ -49,6 +45,7 @@ RSpec.describe 'Reviewモデルのテスト', type: :model do
         expect(Review.reflect_on_association(:user).macro).to eq :belongs_to
       end
     end
+
     context 'Bookモデルとの関係' do
       it 'N:1となっている' do
         expect(Review.reflect_on_association(:book).macro).to eq :belongs_to

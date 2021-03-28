@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <div class="row">
-    <div class="col-md-6 offset-3">
+    <div class="col-lg-6">
       <!--お気に入り本「likeモデル」にデータがある場合とない場合で条件分岐-->
       <% if @user.likes.empty? %>
         <div class="m-5">
@@ -8,7 +8,7 @@
         </div>
       <% else %>
         <div>
-          <%= @user.name %>
+          <%= @user.nickname %>
           さんの読みたい本
         </div>
         <table class="table table-stripe">
@@ -25,7 +25,7 @@
                 <td><%= link_to image_tag(like.book.image_url), book_path(like.book_id)  %></td>
                 <td><%= link_to like.book.title, book_path(like.book_id), class: 'text-success' %></td>
                 <% if like.user == current_user %>
-                  <td><%= link_to '読んだ', user_like_path(@user, like.id, like: {is_active: true}), method: :put %></td>
+                  <td><%= link_to '読書した', user_like_path(@user, like.id, like: {is_active: true}), method: :put %></td>
                 <% end %>
               </tr>
             <% end %>

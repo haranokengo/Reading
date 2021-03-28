@@ -1,7 +1,3 @@
-# frozen_string_literal: true
-
-require 'rails_helper'
-
 RSpec.describe 'Userモデルのテスト', type: :model do
   describe 'バリデーションのテスト' do
     subject { user.valid? }
@@ -17,7 +13,7 @@ RSpec.describe 'Userモデルのテスト', type: :model do
       it 'nameカラムが空だとエラーメッセージがでる' do
         user.name = ''
         user.valid?
-        expect(user.errors.full_messages).to include("名前が入力されていません。","名前は2文字以上に設定して下さい。")
+        expect(user.errors.full_messages).to include("名前が入力されていません。", "名前は2文字以上に設定して下さい。")
       end
       it '2文字以上であること: 1文字は×' do
         user.name = Faker::Lorem.characters(number: 1)
@@ -55,7 +51,7 @@ RSpec.describe 'Userモデルのテスト', type: :model do
       it 'nicknameカラムが空だとエラーメッセージが表示される' do
         user.nickname = ''
         user.valid?
-        expect(user.errors.full_messages).to include("ニックネームが入力されていません。","ニックネームは2文字以上に設定して下さい。")
+        expect(user.errors.full_messages).to include("ニックネームが入力されていません。", "ニックネームは2文字以上に設定して下さい。")
       end
       it '2文字以上であること: 1文字は×' do
         user.nickname = Faker::Lorem.characters(number: 1)
