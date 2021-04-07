@@ -41,7 +41,7 @@ class User < ApplicationRecord
       # パスワーそをランダムに設定している
       user.password = SecureRandom.urlsafe_base64
       user.name = "ゲスト"
-      user.nickname = "ゲストさん"
+      user.nickname = "ゲスト"
     end
   end
 end
