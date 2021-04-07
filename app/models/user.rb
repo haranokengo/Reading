@@ -38,7 +38,7 @@ class User < ApplicationRecord
   def self.guest
     # ゲストユーザーが仮に削除されたとしても、機能するようにしている
     find_or_create_by!(email: 'guest@example.com',) do |user|
-      # パスワーそをランダムに設定している
+      # パスワードをランダムに設定している
       user.password = SecureRandom.urlsafe_base64
       user.name = "ゲスト"
       user.nickname = "ゲスト"
