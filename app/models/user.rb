@@ -30,11 +30,12 @@ class User < ApplicationRecord
     follower.find_by(followed_id: user_id).destroy
   end
 
-  # フォローしていればtrueを返す
+  # フォローしていればtrueを返す（viewの条件分岐の時に使う）
   def following?(user)
     following_user.include?(user)
   end
-
+  
+  # session_controllerで使用
   def self.guest
     # ゲストユーザーが仮に削除されたとしても、機能するようにしている
     find_or_create_by!(email: 'guest@example.com',) do |user|
