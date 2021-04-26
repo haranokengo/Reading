@@ -1,2 +1,1 @@
-<!--この部分のHTMLだけ、renderで部分的に更新する処理-->
-$('#books_buttons_<%= like.id %>').html("<%= j(render partial: 'books/favorites', locals: {review: review}) %>");
+$('#likes_buttons_<%= @book.id %>').html("<%= j(render partial: 'likes/like', locals: { book: @book }) %>");

@@ -34,7 +34,7 @@ class User < ApplicationRecord
   def following?(user)
     following_user.include?(user)
   end
-  
+
   # session_controllerで使用
   def self.guest
     # ゲストユーザーが仮に削除されたとしても、機能するようにしている
