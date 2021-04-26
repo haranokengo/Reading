@@ -7,11 +7,11 @@ class LikesController < ApplicationController
     @categories = Category.all
   end
 
-  def readed_all
-    # 読んだ本一覧をviewに渡すために取得
-    @user = User.find(params[:user_id])
-    @categories = Category.all
-  end
+  # def readed_all
+  #   # 読んだ本一覧をviewに渡すために取得
+  #   @user = User.find(params[:user_id])
+  #   @categories = Category.all
+  # end
 
   def create
     @book = Book.find(params[:book_id])

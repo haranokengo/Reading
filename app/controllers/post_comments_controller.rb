@@ -10,11 +10,10 @@ class PostCommentsController < ApplicationController
     @post_comment.review_id = @review.id
     if @post_comment.save
       # 非同期通信をおこないコメントとレビューを紐付けるため、レビューの「id」を再度@reviewに渡している
-      @review = Review.find(params[:review_id])
       @post_comment.review_id = @review.id
     else
       # 非同期通信をおこないコメントとレビューを紐付けるため、レビューの「id」を再度@reviewに渡している
-      @review = Review.find(params[:review_id])
+      # @review = Review.find(params[:review_id])
       @post_comment.review_id = @review.id
       render 'error'
     end
