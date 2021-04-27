@@ -3,16 +3,16 @@ class ReviewsController < ApplicationController
   before_action :guest_user, only: :new
 
   def new
-    @book = Book.find(params[:book_id])
+    @book = Book.find_by(params[:isbn])
     @review = Review.new
   end
 
   def create
-    @book = Book.find(params[:book_id])
+    @book = Book.find_by(params[:isbn])
     # current_userに紐付いているreviewを保存するために取得
     @review = current_user.reviews.new(review_params)
     # book_idに紐付いているreviewを保存するために取得
-    @review.book_id = @book.id
+    @review.book = @book
     if @review.save
       redirect_to book_path(@book)
     else

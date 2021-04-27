@@ -14,9 +14,9 @@ class LikesController < ApplicationController
   end
 
   def create
-    @book = Book.find(params[:book_id])
+    @book = Book.find_by(params[:isbn])
     # user_idとbook_idに結びついたlike_idにデータを格納
-    Like.create(user_id: current_user.id, book_id: @book.id)
+    Like.create(user_id: current_user.id, book_id: @book.isbn)
   end
 
   def update
@@ -26,9 +26,9 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    @book = Book.find(params[:book_id])
+    @book = Book.find_by(params[:isbn])
     # user_idとbook_idに結びついたlike_idにデータを削除
-    like = Like.find_by(user_id: current_user.id, book_id: @book.id)
+    like = Like.find_by(user_id: current_user.id, book_id: @book.isbn)
     like.destroy
   end
 

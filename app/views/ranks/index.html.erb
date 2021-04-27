@@ -41,9 +41,9 @@
               <% end %>
               第<%= i %>位
             </td>
-            <td><%= link_to image_tag(book.image_url), book_path(book.id) %></td>
+            <td><%= link_to image_tag(book.image_url), book_path(book.isbn) %></td>
             <td>
-              名前：<%= link_to book.title, book_path(book.id), class: 'text-success' %><br>
+              名前：<%= link_to book.title, book_path(book.isbn), class: 'text-success' %><br>
               作者：<%= book.author %><br>
               レビュー数：<%= book.reviews.count %>件
             </td>
