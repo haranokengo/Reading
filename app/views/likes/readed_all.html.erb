@@ -17,7 +17,7 @@
             <th>タイトル</th>
           </tr>
           <% @user.likes.each do |like| %>
-          <!--読んだ本のみが表示されるように-->
+            <!--読んだ本のみが表示されるように-->
             <% if like.is_active %>
               <tr>
                 <td><%= link_to image_tag(like.book.image_url), book_path(like.book_id)  %></td>

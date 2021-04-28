@@ -1,16 +1,14 @@
 class LikesController < ApplicationController
   before_action :authenticate_user!
-  # お気に入り（読みたい本）機能
+  # [index][readed_all]の記述が一緒なためprivateメソッドにまとめている。
+  before_action :set_like, only: [:index, :readed_all]
+  
+  # 読みたい本（お気に入り）一覧をviewに渡すためにuser情報を取得
   def index
-    # 読みたい本（お気に入り）一覧をviewに渡すためにuser情報を取得
-    @user = User.find(params[:user_id])
-    @categories = Category.all
   end
-
+  
+   # 読んだ本一覧をviewに渡すために取得
   def readed_all
-    # 読んだ本一覧をviewに渡すために取得
-    @user = User.find(params[:user_id])
-    @categories = Category.all
   end
 
   def create
@@ -33,6 +31,11 @@ class LikesController < ApplicationController
   end
 
   private
+  
+  def set_like
+    @user = User.find(params[:user_id])
+    @categories = Category.all
+  end
 
   def like_params
     params.require(:like).permit(:is_active)
