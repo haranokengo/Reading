@@ -7,7 +7,7 @@ class LikesController < ApplicationController
   def index
   end
 
-   # 読んだ本一覧をviewに渡すために取得
+  # 読んだ本一覧をviewに渡すために取得
   def readed_all
   end
 
