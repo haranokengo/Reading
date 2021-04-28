@@ -15,7 +15,7 @@ class BooksController < ApplicationController
         title: @title,
       })
       # この部分で「@books」にAPIからの取得したJSONデータを格納
-      # read(result)については、privateメソッドとして、設定
+      # read(result)は、privateメソッドとして、設定
       @books = results.map { |result| Book.new(read(result)) }
     end
     # 「@books」内の各データをそれぞれ保存
