@@ -7,4 +7,5 @@ class Book < ApplicationRecord
   def to_params
     isbn.to_s
   end
+
 end

@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
   def show
-    @book = Book.find_by(params[:isbn])
+    @book = Book.find_by(isbn: params[:isbn])
     @post_comment = PostComment.new
   end
 

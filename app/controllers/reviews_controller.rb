@@ -3,12 +3,12 @@ class ReviewsController < ApplicationController
   before_action :guest_user, only: :new
 
   def new
-    @book = Book.find_by(params[:isbn])
+    @book = Book.find_by(params[isbn: isbn])
     @review = Review.new
   end
 
   def create
-    @book = Book.find_by(params[:isbn])
+    @book = Book.find_by(params[isbn: isbn])
     # current_userに紐付いているreviewを保存するために取得
     @review = current_user.reviews.new(review_params)
     # book_idに紐付いているreviewを保存するために取得
