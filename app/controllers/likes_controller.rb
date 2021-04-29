@@ -25,7 +25,7 @@ class LikesController < ApplicationController
 
   def destroy
     @book = Book.find_by(isbn: params[:book_isbn])
-    # user_idとbook_idに結びついたlike_idにデータを削除
+    # user_idとbook_idに結びついたlike_idのデータを削除
     like = Like.find_by(user_id: current_user.id, book_id: @book.isbn)
     like.destroy
   end

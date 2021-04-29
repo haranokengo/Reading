@@ -6,7 +6,7 @@ class BooksController < ApplicationController
   end
 
   def search
-    # paramsでtitleを持ってくる
+    # viewから@titleを持ってくる
     @title = params[:title]
     if @title.present?
       # resultsに楽天APIから取得したデータ（jsonデータ）を格納する

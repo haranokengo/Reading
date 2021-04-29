@@ -12,6 +12,7 @@
 
   <body class="d-flex flex-column vh-100">
     <%= render 'layouts/header' %>
+      <!--フラッシュ表示-->
       <% flash.each do |key, value| %>
         <%= content_tag(:div, value, class: "#{key}") %>
     　<% end %>

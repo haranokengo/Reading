@@ -1,11 +1,11 @@
 <!--フォローユーザーにログインしているユーザーのIdがあればフォローを外すリンクを表示-->
 <% if current_user.following?(user) %>
   <!--フォロー非同期通信を行うためにremote: :trueに設定-->
-  <%= link_to(user_unfollow_path(user.id), method: :POST, remote: :true) do %>
+  <%= link_to(user_unfollow_path(user.id), method: :POST) do %>
     <button class="btn btn-outline-secondary text-success">フォローを外す</button>
   <% end %>
 <% else %>
-  <%= link_to(user_follow_path(@user.id), method: :POST, remote: :true) do %>
+  <%= link_to(user_follow_path(@user.id), method: :POST) do %>
     <button class="btn btn-outline-secondary text-success">フォローする</button>
   <% end %>
 <% end %>

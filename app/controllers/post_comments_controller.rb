@@ -1,6 +1,6 @@
 class PostCommentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :guest_user, only: :create
+  before_action :guest_user, only: [:create, :destroy]
 
   def create
     @review = Review.find(params[:review_id])

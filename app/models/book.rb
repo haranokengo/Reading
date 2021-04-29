@@ -4,7 +4,7 @@ class Book < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :likes, dependent: :destroy
 
-  # 「isbn」をurlに使う処理
+  # 「isbn」をurlで使う処理
   def to_params
     isbn.to_s
   end

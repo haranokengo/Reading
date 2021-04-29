@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
-  before_action :guest_user, only: :new
+  before_action :guest_user, only: [:new, :destroy, :create]
 
   def new
     @book = Book.find_by(isbn: params[:book_isbn])
