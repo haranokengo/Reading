@@ -14,7 +14,7 @@ class LikesController < ApplicationController
   def create
     @book = Book.find_by(isbn: params[:book_isbn])
     # user_idとbook_idに結びついたlike_idにデータを格納
-    Like.create(user_id: current_user.id, book_id: @book)
+    Like.create(user_id: current_user.id, book_id: @book.isbn)
   end
 
   def update
