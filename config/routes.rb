@@ -26,7 +26,8 @@ Rails.application.routes.draw do
     post 'users/guest_sign_in', to: 'users/sessions#new_guest'
   end
 
-  resources :books, only: [:create, :edit, :update, :destroy, :show], param: :isbn, constraints: { code: /\d+/ } do
+  resources :books, only: [:create, :edit, :update, :destroy, :show],
+                    param: :isbn, constraints: { code: /\d+/ } do
     # bookに結びつけてネスト化
     # ネスト化が２階層で深くなっているためshallowオプションを使用して浅くしている
     resources :reviews, only: [:create, :destroy, :new], shallow: true do

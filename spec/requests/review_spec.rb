@@ -12,7 +12,7 @@ RSpec.describe 'Reviewのリクエストのテスト', type: :request do
   describe 'review機能のテスト' do
     it 'reviewを登録する' do
       expect do
-        post book_reviews_path(book_id: book.id),
+        post book_reviews_path(book_isbn: book.isbn),
              params: { review: { content: review.content, category_id: category.id } }
       end.to change(Review, :count).by(1)
     end

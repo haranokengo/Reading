@@ -5,6 +5,7 @@
     <button class="btn btn-outline-secondary">読みたい</button>
   <% end %>
 <% else %>
+  <!--useridに紐付いたlike_idを削除する-->
   <%= link_to book_like_path(book_isbn: book.isbn, id: book.likes.find_by(user_id: current_user.id).id), method: :delete, remote: true, class:"like-btn" do %>
     <button class="btn btn-outline-secondary text-warning">読みたい本から解除</button>
   <% end %>

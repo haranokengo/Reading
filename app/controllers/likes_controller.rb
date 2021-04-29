@@ -1,20 +1,20 @@
 class LikesController < ApplicationController
   before_action :authenticate_user!
-  # [index][readed_all]の記述が一緒なためprivateメソッドにまとめている。
+  # 共通メソッド「set_like」でまとめている
   before_action :set_like, only: [:index, :readed_all]
 
-  # 読みたい本（お気に入り）一覧をviewに渡すためにuser情報を取得
+  # 読みたい本（お気に入りの中の）一覧をviewに渡すためにuser情報を取得
   def index
   end
 
-  # 読んだ本一覧をviewに渡すために取得
+  # 読んだ本(お気に入りの中の)一覧をviewに渡すために取得
   def readed_all
   end
 
   def create
     @book = Book.find_by(isbn: params[:book_isbn])
     # user_idとbook_idに結びついたlike_idにデータを格納
-    Like.create(user_id: current_user.id, book_id: @book.isbn)
+    Like.create(user_id: current_user.id, book_id: @book)
   end
 
   def update

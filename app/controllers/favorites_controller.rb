@@ -1,5 +1,6 @@
 class FavoritesController < ApplicationController
   before_action :authenticate_user!
+  # 共通メソッド「set_review」でまとめている
   before_action :set_review, only: [:create, :destroy]
   # いいね機能
   def create
