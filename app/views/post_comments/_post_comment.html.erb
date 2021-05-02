@@ -5,7 +5,7 @@
         <%= attachment_image_tag post_comment.user, :image, size: "50x50", fallback: "no_image.jpg", class: 'm-2' %>
       </div>
       <div class="col-lg-9">
-        <%= link_to post_comment.user.name, user_path(post_comment.user_id), class: 'text-success' %><br>
+        <%= link_to post_comment.user.nickname, user_path(post_comment.user_id), class: 'text-success' %><br>
         <%= post_comment.impression %><br>
         <%= post_comment.created_at.strftime('%Y/%m/%d') %>
         <!--current_userのみが自分のコメントを削除できるようにしている-->
